@@ -1,9 +1,5 @@
 import React from "react";
 
-const c = () => (
-  <h3>
-    form builder
-  </h3>
-);
+const c = () => <div />;
 
 export default c;
