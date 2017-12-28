@@ -3,7 +3,14 @@ import { Layout, Menu } from "antd";
 const { Header } = Layout;
 
 const c = () => (
-  <Header style={{ position: "fixed", width: "100%", padding: 0 }}>
+  <Header
+    style={{
+      position: "fixed",
+      width: "100%",
+      padding: 0,
+      backgroundColor: "#fff"
+    }}
+  >
     <Menu
       mode="horizontal"
       defaultSelectedKeys={["1"]}

@@ -1,20 +1,23 @@
-import React from "react";
-// import { Layout } from 'antd';
+import React, { Component } from "react";
 
-import PrimaryHeader from "../components/myforms/primaryHeader";
-import SecondaryHeader from "../components/myforms/secondaryHeader";
-import LeftPanel from "../components/myforms/leftPanel";
-import RightPanel from "../components/myforms/rightPanel";
-import StageContainer from "../components/myforms/stageContainer";
+import PrimaryHeader from "../components/build/primaryHeader";
+import SecondaryHeader from "../components/build/secondaryHeader";
+import LeftPanel from "../components/build/leftPanel";
+import RightPanel from "../components/build/rightPanel";
+import StageContainer from "../components/build/stageContainer";
 
-const Build = () => (
-  <div>
-    <PrimaryHeader />
-    <SecondaryHeader />
-    <StageContainer />
-    <LeftPanel />
-    <RightPanel />
-  </div>
-);
+class Build extends Component {
+  render() {
+    return (
+      <div>
+        <PrimaryHeader />
+        <SecondaryHeader />
+        <StageContainer />
+        <LeftPanel />
+        <RightPanel />
+      </div>
+    );
+  }
+}
 
 export default Build;

@@ -13,7 +13,7 @@ const c = () => (
     }}
   >
     <div className="logo" />
-    <Menu theme="dark" mode="inline" defaultSelectedKeys={["4"]}>
+    <Menu theme="dark" mode="inline">
       <Menu.Item key="1">
         <Icon type="user" />
         <span className="nav-text">标题</span>
