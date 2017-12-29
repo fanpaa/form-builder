@@ -15,8 +15,9 @@ const style = {
 };
 
 const stageTarget = {
-  drop() {
-    return { name: "表单" };
+  drop(props, monitor) {
+    console.log(monitor.getItem());
+    
   }
 };
 
@@ -69,6 +70,20 @@ class Container extends Component {
       ]
     };
   }
+
+  handleDrop() {
+		this.setState(
+      update(this.state, {
+        cards: {
+          $push: {
+            id: 100,
+            name: "add",
+            component: "Rate"
+          }
+        }
+      })
+    );
+	}
 
   moveCard(id, atIndex) {
     const { card, index } = this.findCard(id);

@@ -13,9 +13,9 @@ class LeftPanel extends Component {
           width: "200px"
         }}
       >
-        <Box name="Search Bar" />
-        <Box name="Rate type1" />
-        <Box name="Rate" />
+        <Box name="Search Bar" component='TitleInput'/>
+        <Box name="Rate type1" component='Rate'/>
+        <Box name="Rate" component='Rate'/>
       </div>
     );
   }

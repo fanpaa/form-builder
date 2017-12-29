@@ -17,6 +17,7 @@ const boxSource = {
 	beginDrag(props) {
 		return {
 			name: props.name,
+			component: props.component,
 		}
 	},
 
@@ -24,7 +25,7 @@ const boxSource = {
 		const item = monitor.getItem()
 		const dropResult = monitor.getDropResult()
 		if (dropResult) {
-			alert(`You dropped ${item.name} into ${dropResult.name}!`) // eslint-disable-line no-alert
+			console.log(`You dropped ${item.name} into 表单!`) // eslint-disable-line no-alert
 		}
 	},
 }
