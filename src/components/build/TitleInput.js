@@ -1,15 +1,24 @@
-import React from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Input } from "antd";
 const Search = Input.Search;
 
-const c = () => (
-  <div>
-    <Search
-      placeholder="input search text"
-      onSearch={value => console.log(value)}
-      enterButton
-    />
-  </div>
-);
+class TitleInput extends Component {
+  static propTypes = {
+    text: PropTypes.string.isRequired
+  };
+  render() {
+    const { text } = this.props;
+    return (
+      <div>
+        <Search
+          placeholder={text}
+          onSearch={value => console.log(value)}
+          enterButton
+        />
+      </div>
+    );
+  }
+}
 
-export default c
+export default TitleInput;

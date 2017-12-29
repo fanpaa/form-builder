@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import update from "immutability-helper";
-import { DropTarget, DragDropContext } from "react-dnd";
-import HTML5Backend from "react-dnd-html5-backend";
+import { DropTarget } from "react-dnd";
 import Card from "./Card";
 import ItemTypes from "./ItemTypes";
+
+import TitleInput from "./TitleInput";
+import Rate from "./Rate";
 
 const style = {
   width: 400,
@@ -12,14 +14,12 @@ const style = {
   paddingTop: "80px"
 };
 
-const cardTarget = {
-  drop() {}
+const stageTarget = {
+  drop() {
+    return { name: "表单" };
+  }
 };
 
-// @DragDropContext(HTML5Backend)
-// @DropTarget(ItemTypes.CARD, cardTarget, connect => ({
-// 	connectDropTarget: connect.dropTarget(),
-// }))
 class Container extends Component {
   static propTypes = {
     connectDropTarget: PropTypes.func.isRequired
@@ -33,31 +33,38 @@ class Container extends Component {
       cards: [
         {
           id: 1,
-          text: "Write a cool JS library"
+          text: "Write a cool JS library",
+          component: "TitleInput"
         },
         {
           id: 2,
-          text: "Make it generic enough"
+          text: "Make it generic enough",
+          component: "Rate"
         },
         {
           id: 3,
-          text: "Write README"
+          text: "Write README",
+          component: "TitleInput"
         },
         {
           id: 4,
-          text: "Create some examples"
+          text: "Create some examples",
+          component: "TitleInput"
         },
         {
           id: 5,
-          text: "Spam in Twitter and IRC to promote it"
+          text: "Spam in Twitter and IRC to promote it",
+          component: "Rate"
         },
         {
           id: 6,
-          text: "???"
+          text: "???",
+          component: "TitleInput"
         },
         {
           id: 7,
-          text: "PROFIT"
+          text: "PROFIT",
+          component: "TitleInput"
         }
       ]
     };
@@ -84,6 +91,14 @@ class Container extends Component {
     };
   }
 
+  renderDynamicComponent(component, text) {
+    const d = {
+      TitleInput: <TitleInput text={text} />,
+      Rate: <Rate />
+    };
+    return d[component];
+  }
+
   render() {
     const { connectDropTarget } = this.props;
     const { cards } = this.state;
@@ -94,18 +109,25 @@ class Container extends Component {
           <Card
             key={card.id}
             id={card.id}
-            text={card.text}
             moveCard={this.moveCard}
             findCard={this.findCard}
-          />
+          >
+            {this.renderDynamicComponent(card.component, card.text)}
+          </Card>
         ))}
+        <pre>code</pre>
+        <code>{JSON.stringify(this.state.cards)}</code>
       </div>
     );
   }
 }
 
-export default DragDropContext(HTML5Backend)(
-  DropTarget(ItemTypes.CARD, cardTarget, connect => ({
-    connectDropTarget: connect.dropTarget()
-  }))(Container)
-);
+export default DropTarget(
+  [ItemTypes.BOX, ItemTypes.CARD],
+  stageTarget,
+  (connect, monitor) => ({
+    connectDropTarget: connect.dropTarget(),
+    isOver: monitor.isOver(),
+    canDrop: monitor.canDrop()
+  })
+)(Container);
