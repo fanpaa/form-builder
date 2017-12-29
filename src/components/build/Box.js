@@ -21,11 +21,8 @@ const boxSource = {
 	},
 
 	endDrag(props, monitor) {
-		console.log(props)
-		
 		const item = monitor.getItem()
 		const dropResult = monitor.getDropResult()
-		console.log(dropResult)
 		if (dropResult) {
 			alert(`You dropped ${item.name} into ${dropResult.name}!`) // eslint-disable-line no-alert
 		}
