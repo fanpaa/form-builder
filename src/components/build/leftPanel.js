@@ -10,12 +10,24 @@ class LeftPanel extends Component {
           position: "fixed",
           left: 0,
           top: "64px",
-          width: "200px"
+          width: "200px",
+          padding: "10px"
         }}
       >
-        <Box name="Search Bar" component='TitleInput'/>
-        <Box name="Rate type1" component='Rate'/>
-        <Box name="Rate" component='Rate'/>
+        <Box
+          meta={{
+            placeholder: ""
+          }}
+          name="➕搜索栏"
+          component="TitleInput"
+        />
+        <Box
+          meta={{
+            defaultValue: 0
+          }}
+          name="➕评分栏"
+          component="Rate"
+        />
       </div>
     );
   }

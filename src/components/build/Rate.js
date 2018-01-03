@@ -3,8 +3,9 @@ import { Rate } from "antd";
 
 class RateC extends Component {
   render() {
+    const { meta } = this.props;
     return (
-        <Rate/>
+        <Rate allowHalf defaultValue={meta.defaultValue}/>
     );
   }
 }

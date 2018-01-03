@@ -8,7 +8,8 @@ const style = {
   padding: "0.5rem 1rem",
   marginBottom: ".5rem",
   backgroundColor: "white",
-  cursor: "move"
+  cursor: "move",
+  position:'relative'
 };
 
 const cardSource = {
@@ -66,13 +67,15 @@ class Card extends Component {
     const {
       isDragging,
       connectDragSource,
-      connectDropTarget
+      connectDropTarget,
+      handleEdit
     } = this.props;
     const opacity = isDragging ? 0 : 1;
 
     return connectDragSource(
       connectDropTarget(
         <div style={{ ...style, opacity }}>
+          <div style={{position:'absolute',right:'-30px',top:0,cursor:'pointer'}} onClick={() => handleEdit(this.props.id)}>edit</div>
           {this.props.children}
         </div>
       )
