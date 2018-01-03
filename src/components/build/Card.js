@@ -9,7 +9,7 @@ const style = {
   marginBottom: ".5rem",
   backgroundColor: "white",
   cursor: "move",
-  position:'relative'
+  position: "relative"
 };
 
 const cardSource = {
@@ -75,7 +75,17 @@ class Card extends Component {
     return connectDragSource(
       connectDropTarget(
         <div style={{ ...style, opacity }}>
-          <div style={{position:'absolute',right:'-30px',top:0,cursor:'pointer'}} onClick={() => handleEdit(this.props.id)}>edit</div>
+          <div
+            style={{
+              position: "absolute",
+              right: "-30px",
+              top: 0,
+              cursor: "pointer"
+            }}
+            onClick={e => handleEdit(e, this.props.id)}
+          >
+            edit
+          </div>
           {this.props.children}
         </div>
       )

@@ -14,6 +14,8 @@ class Build extends Component {
     super(props);
     this.handleDrop = this.handleDrop.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
+    this.handleChangeCard = this.handleChangeCard.bind(this);
+
     this.moveCard = this.moveCard.bind(this);
     this.findCard = this.findCard.bind(this);
     this.state = {
@@ -39,7 +41,10 @@ class Build extends Component {
             placeholder: "Write README"
           }
         }
-      ]
+      ],
+      rightPanel: {
+        meta: {}
+      }
     };
   }
   render() {
@@ -56,7 +61,10 @@ class Build extends Component {
           handleEdit={this.handleEdit}
         />
         <LeftPanel />
-        <RightPanel />
+        <RightPanel
+          card={this.state.rightPanel}
+          handleChangeCard={this.handleChangeCard}
+        />
       </div>
     );
   }
@@ -105,8 +113,29 @@ class Build extends Component {
     );
   }
 
-  handleEdit(id) {
-    console.log(this.findCard(id))
+  handleEdit(e, id) {
+    console.log("build", this.findCard(id));
+    this.setState({ rightPanel: this.findCard(id).card });
+  }
+
+  handleChangeCard(event, id, key) {
+    console.log("handleChangeCard-------");
+    console.log(this.findCard(id));
+    let n = this.findCard(id).card;
+    let index = this.findCard(id).index;
+    console.log("handleChangeCard", event.target.value);
+    n.meta[key] = event.target.value;
+    if (key === "defaultValue") {
+      n.meta[key] = +n.meta[key];
+    }
+    console.log(n)
+    this.setState(
+      update(this.state, {
+        cards: {
+          $splice: [[index, 1, n]]
+        }
+      })
+    );
   }
 }
 

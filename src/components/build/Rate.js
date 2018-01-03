@@ -5,7 +5,7 @@ class RateC extends Component {
   render() {
     const { meta } = this.props;
     return (
-        <Rate allowHalf defaultValue={meta.defaultValue}/>
+        <Rate allowHalf value={meta.defaultValue}/>
     );
   }
 }

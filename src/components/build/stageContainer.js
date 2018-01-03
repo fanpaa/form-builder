@@ -15,7 +15,7 @@ const style = {
 
 const stageTarget = {
   drop(props, monitor) {
-    props.handleDrop(monitor.getItem())
+    props.handleDrop(monitor.getItem());
   }
 };
 
@@ -26,8 +26,8 @@ class Container extends Component {
 
   renderDynamicComponent(component, meta) {
     const d = {
-      TitleInput: <TitleInput meta={meta}/>,
-      Rate: <Rate meta={meta}/>
+      TitleInput: <TitleInput meta={meta} />,
+      Rate: <Rate meta={meta} />
     };
     return d[component];
   }
@@ -57,7 +57,7 @@ class Container extends Component {
           </Card>
         ))}
 
-        <hr/>
+        <hr />
         <code>{JSON.stringify(cards)}</code>
       </div>
     );

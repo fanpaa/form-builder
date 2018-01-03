@@ -1,19 +1,32 @@
-import React,{Component} from "react";
+import React, { Component } from "react";
 
 class c extends Component {
-  constructor(props){
-      super(props)
-      this.state = {
-        placeholderValue: ''
-      }
-      this.handleUsernameChange=this.handleUsernameChange.bind(this)
-  }
-  handleUsernameChange (event) {
-    this.setState({
-      placeholderValue: event.target.value
-    })
-  }
   render() {
+    const { card, handleChangeCard } = this.props;
+    console.log("right render", card);
+    let pp;
+    if (card.meta.placeholder !== undefined) {
+      pp = (
+        <label>
+          {" placeholder "}
+          <input
+            value={card.meta.placeholder || ""}
+            onChange={e => handleChangeCard(e, card.id,'placeholder')}
+          />
+        </label>
+      );
+    } else if (card.meta.defaultValue !== undefined) {
+      pp = (
+        <label>
+          {" defaultValue "}
+          <input
+            value={card.meta.defaultValue || 0}
+            onChange={e => handleChangeCard(e, card.id,'defaultValue')}
+          />
+        </label>
+      );
+    }
+
     return (
       <div
         style={{
@@ -24,15 +37,8 @@ class c extends Component {
           top: "64px"
         }}
       >
-        <label>
-          {" placeholder "}
-          <input value={this.state.placeholderValue} onChange={this.handleUsernameChange}/>
-        </label>
-        <br />
-        <label>
-          {" defaultValue "}
-          <input />
-        </label>
+        <p>edit card id: {card.id}</p>
+        {pp}
       </div>
     );
   }
