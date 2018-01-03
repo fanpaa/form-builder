@@ -5,7 +5,7 @@ class c extends Component {
     const { card, handleChangeCard } = this.props;
     console.log("right render", card);
     let pp;
-    if (card.meta.placeholder !== undefined) {
+    if (card.component === 'TitleInput') {
       pp = (
         <label>
           {" placeholder "}
@@ -15,7 +15,7 @@ class c extends Component {
           />
         </label>
       );
-    } else if (card.meta.defaultValue !== undefined) {
+    } else if (card.component === 'Rate') {
       pp = (
         <label>
           {" defaultValue "}
