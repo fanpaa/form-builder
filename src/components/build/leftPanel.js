@@ -16,8 +16,8 @@ class LeftPanel extends Component {
       >
         <Box
           meta={{
-            text: "",
-            size:'large'
+            text: "Header",
+            size: "large"
           }}
           name="Header标题"
           component="Header"
@@ -25,7 +25,7 @@ class LeftPanel extends Component {
         <Box
           meta={{
             placeholder: "",
-            value:""
+            value: ""
           }}
           name="Input输入框"
           component="TitleInput"
@@ -39,8 +39,8 @@ class LeftPanel extends Component {
         /> */}
         <Box
           meta={{
-            value: '3',
-            options:[
+            value: "3",
+            options: [
               { label: "航旅", value: "1" },
               { label: "车险", value: "2" },
               { label: "健康险", value: "3" }
@@ -48,6 +48,25 @@ class LeftPanel extends Component {
           }}
           name="Radio单选框"
           component="ZRadio"
+        />
+        <Box
+          meta={{
+            value: new Date()
+          }}
+          name="DatePicker日期选择框"
+          component="ZDate"
+        />
+        <Box
+          meta={{
+            value: "1",
+            options: [
+              { label: "jack", value: "1" },
+              { label: "lucy", value: "2" },
+              { label: "topo", value: "3" }
+            ]
+          }}
+          name="Select选择器"
+          component="ZSelect"
         />
       </div>
     );

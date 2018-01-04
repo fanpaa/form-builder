@@ -8,6 +8,8 @@ import TitleInput from "./TitleInput";
 import Rate from "./Rate";
 import Header from "./Header";
 import ZRadio from "./ZRadio";
+import ZDate from "./ZDate";
+import ZSelect from "./ZSelect";
 
 const style = {
   width: 400,
@@ -32,6 +34,8 @@ class Container extends Component {
       TitleInput: <TitleInput meta={meta} />,
       Rate: <Rate meta={meta} />,
       Header: <Header meta={meta} />,
+      ZDate: <ZDate meta={meta} />,
+      ZSelect: <ZSelect meta={meta} />,
       ZRadio: <ZRadio meta={meta} />
     };
     return d[component];
