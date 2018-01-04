@@ -68,7 +68,8 @@ class Card extends Component {
       isDragging,
       connectDragSource,
       connectDropTarget,
-      handleEdit
+      handleEdit,
+      handleDelete
     } = this.props;
     const opacity = isDragging ? 0 : 1;
 
@@ -84,8 +85,20 @@ class Card extends Component {
             }}
             onClick={e => handleEdit(e, this.props.id)}
           >
-            edit
+            ⚙
           </div>
+          <div
+            style={{
+              position: "absolute",
+              right: "-50px",
+              top: 0,
+              cursor: "pointer"
+            }}
+            onClick={e => handleDelete(e, this.props.id)}
+          >
+            <span>🗑</span>
+          </div>
+          
           {this.props.children}
         </div>
       )

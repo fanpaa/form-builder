@@ -6,11 +6,14 @@ import ItemTypes from "./ItemTypes";
 
 import TitleInput from "./TitleInput";
 import Rate from "./Rate";
+import Header from "./Header";
+import ZRadio from "./ZRadio";
 
 const style = {
   width: 400,
   margin: "0 auto",
-  paddingTop: "80px"
+  paddingTop: "80px",
+  minHeight: 400
 };
 
 const stageTarget = {
@@ -27,7 +30,9 @@ class Container extends Component {
   renderDynamicComponent(component, meta) {
     const d = {
       TitleInput: <TitleInput meta={meta} />,
-      Rate: <Rate meta={meta} />
+      Rate: <Rate meta={meta} />,
+      Header: <Header meta={meta} />,
+      ZRadio: <ZRadio meta={meta} />
     };
     return d[component];
   }
@@ -39,25 +44,38 @@ class Container extends Component {
       moveCard,
       findCard,
       handleDrop,
-      handleEdit
+      handleEdit,
+      handleDelete
     } = this.props;
+
+    let rr;
+    if (cards.length > 0) {
+      rr = cards.map(card => (
+        <Card
+          key={card.id}
+          id={card.id}
+          moveCard={moveCard}
+          findCard={findCard}
+          handleDrop={handleDrop}
+          handleEdit={handleEdit}
+          handleDelete={handleDelete}
+        >
+          {this.renderDynamicComponent(card.component, card.meta)}
+        </Card>
+      ));
+    } else {
+      rr = (
+        <p style={{ width: "100%", height: "200px", textAlign: "center" }}>
+          ➡拖入左侧块
+        </p>
+      );
+    }
 
     return connectDropTarget(
       <div style={style}>
-        {cards.map(card => (
-          <Card
-            key={card.id}
-            id={card.id}
-            moveCard={moveCard}
-            findCard={findCard}
-            handleDrop={handleDrop}
-            handleEdit={handleEdit}
-          >
-            {this.renderDynamicComponent(card.component, card.meta)}
-          </Card>
-        ))}
-
+        {rr}
         <hr />
+        <h5>JSON:</h5>
         <code>{JSON.stringify(cards)}</code>
       </div>
     );

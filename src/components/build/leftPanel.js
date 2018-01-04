@@ -16,17 +16,38 @@ class LeftPanel extends Component {
       >
         <Box
           meta={{
-            placeholder: ""
+            text: "",
+            size:'large'
           }}
-          name="➕搜索栏"
-          component="TitleInput"
+          name="Header标题"
+          component="Header"
         />
         <Box
           meta={{
+            placeholder: "",
+            value:""
+          }}
+          name="Input输入框"
+          component="TitleInput"
+        />
+        {/* <Box
+          meta={{
             defaultValue: 0
           }}
-          name="➕评分栏"
+          name="Rate评分"
           component="Rate"
+        /> */}
+        <Box
+          meta={{
+            value: '3',
+            options:[
+              { label: "航旅", value: "1" },
+              { label: "车险", value: "2" },
+              { label: "健康险", value: "3" }
+            ]
+          }}
+          name="Radio单选框"
+          component="ZRadio"
         />
       </div>
     );

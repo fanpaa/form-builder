@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import { Input } from "antd";
-const Search = Input.Search;
 
 class TitleInput extends Component {
+  handleOnPressEnter(e){
+    console.log(e.target.value)
+  }
   render() {
     const { meta } = this.props;
     return (
       <div>
-        <Search
-          placeholder={meta.placeholder}
-          onSearch={value => console.log(value)}
-          enterButton
+        <Input
+          placeholder={meta.placeholder} value={meta.value} onPressEnter={this.handleOnPressEnter.bind(this)}
         />
       </div>
     );

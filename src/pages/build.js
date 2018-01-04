@@ -9,43 +9,27 @@ import LeftPanel from "../components/build/leftPanel";
 import RightPanel from "../components/build/rightPanel";
 import StageContainer from "../components/build/stageContainer";
 
+let uniqueId = 0;
+
 class Build extends Component {
   constructor(props) {
     super(props);
     this.handleDrop = this.handleDrop.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
     this.handleChangeCard = this.handleChangeCard.bind(this);
 
     this.moveCard = this.moveCard.bind(this);
     this.findCard = this.findCard.bind(this);
     this.state = {
-      cards: [
-        {
-          id: 1,
-          component: "TitleInput",
-          meta: {
-            placeholder: "Write a cool JS library"
-          }
-        },
-        {
-          id: 2,
-          component: "Rate",
-          meta: {
-            defaultValue: 3.5
-          }
-        },
-        {
-          id: 3,
-          component: "TitleInput",
-          meta: {
-            placeholder: "Write README"
-          }
-        }
-      ],
+      cards: [],
       rightPanel: {
         meta: {}
       }
     };
+  }
+  componentWillMount() {
+    uniqueId = this.state.cards.length;
   }
   render() {
     const { cards } = this.state;
@@ -59,6 +43,7 @@ class Build extends Component {
           findCard={this.findCard}
           handleDrop={this.handleDrop}
           handleEdit={this.handleEdit}
+          handleDelete={this.handleDelete}
         />
         <LeftPanel />
         <RightPanel
@@ -92,9 +77,7 @@ class Build extends Component {
 
   handleDrop(item) {
     if (!item.meta) return;
-
-    const { cards } = this.state;
-    const _id = cards.length + 1;
+    let _id = uniqueId++;
     this.setState(
       update(this.state, {
         cards: {
@@ -102,10 +85,7 @@ class Build extends Component {
             {
               id: _id,
               component: item.component,
-              meta: {
-                placeholder: "",
-                defaultValue: 0
-              }
+              meta: item.meta
             }
           ]
         }
@@ -117,6 +97,16 @@ class Build extends Component {
     console.log("build", this.findCard(id));
     this.setState({ rightPanel: this.findCard(id).card });
   }
+  handleDelete(e, id) {
+    let index = this.findCard(id).index;
+    this.setState(
+      update(this.state, {
+        cards: {
+          $splice: [[index, 1]]
+        }
+      })
+    );
+  }
 
   handleChangeCard(event, id, key) {
     console.log("handleChangeCard-------");
@@ -124,11 +114,17 @@ class Build extends Component {
     let n = this.findCard(id).card;
     let index = this.findCard(id).index;
     console.log("handleChangeCard", event.target.value);
-    n.meta[key] = event.target.value;
+    //todo
     if (key === "defaultValue") {
-      n.meta[key] = +n.meta[key];
+      n.meta[key] = +event.target.value;
+    } else if (key === "options") {
+      try {
+        n.meta[key] = JSON.parse(event.target.value);
+      } catch (e) {}
+    } else {
+      n.meta[key] = event.target.value;
     }
-    console.log(n)
+    console.log(n);
     this.setState(
       update(this.state, {
         cards: {

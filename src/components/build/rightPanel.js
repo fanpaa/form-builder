@@ -1,43 +1,50 @@
 import React, { Component } from "react";
-
+import { Input } from 'antd';
+const { TextArea } = Input;
 class c extends Component {
   render() {
     const { card, handleChangeCard } = this.props;
     console.log("right render", card);
     let pp;
-    if (card.component === 'TitleInput') {
-      pp = (
-        <label>
-          {" placeholder "}
-          <input
-            value={card.meta.placeholder || ""}
-            onChange={e => handleChangeCard(e, card.id,'placeholder')}
-          />
-        </label>
-      );
-    } else if (card.component === 'Rate') {
-      pp = (
-        <label>
-          {" defaultValue "}
-          <input
-            value={card.meta.defaultValue || 0}
-            onChange={e => handleChangeCard(e, card.id,'defaultValue')}
-          />
-        </label>
-      );
-    }
+
+    pp = Object.keys(card.meta).map((key, index) => {
+      if (typeof card.meta[key] === "object") {
+        return (
+          <label key={index}>
+            key:{key}
+            <TextArea autosize={{ minRows: 2 }}
+              value={JSON.stringify(card.meta[key]) || ""}
+              onChange={e => handleChangeCard(e, card.id, key)}
+            />
+          </label>
+        );
+      } else {
+        return (
+          <label key={index}>
+            key:{key}
+            <Input
+              value={card.meta[key] || ""}
+              onChange={e => handleChangeCard(e, card.id, key)}
+            />
+          </label>
+        );
+      }
+    });
 
     return (
       <div
         style={{
-          overflow: "auto",
           height: "100vh",
           position: "fixed",
           right: 0,
-          top: "64px"
+          top: "64px",
+          width: "200px",
+          padding: "10px"
         }}
       >
-        <p>edit card id: {card.id}</p>
+        <p>
+          当前编辑块: {card.component}-{card.id}
+        </p>
         {pp}
       </div>
     );

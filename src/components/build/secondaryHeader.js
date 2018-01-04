@@ -7,6 +7,7 @@ const c = () => (
     style={{
       position: "fixed",
       width: "100%",
+      zIndex:10,
       padding: 0,
       backgroundColor: "#fff"
     }}
