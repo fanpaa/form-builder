@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import PropTypes from "prop-types";
-import { DropTarget } from "react-dnd";
+import {DropTarget} from "react-dnd";
 import Card from "./Card";
 import ItemTypes from "./ItemTypes";
 
@@ -10,13 +10,7 @@ import Header from "./Header";
 import ZRadio from "./ZRadio";
 import ZDate from "./ZDate";
 import ZSelect from "./ZSelect";
-
-const style = {
-  width: 400,
-  margin: "0 auto",
-  paddingTop: "80px",
-  minHeight: 400
-};
+import { Divider } from 'antd';
 
 const stageTarget = {
   drop(props, monitor) {
@@ -31,12 +25,12 @@ class Container extends Component {
 
   renderDynamicComponent(component, meta) {
     const d = {
-      TitleInput: <TitleInput meta={meta} />,
-      Rate: <Rate meta={meta} />,
-      Header: <Header meta={meta} />,
-      ZDate: <ZDate meta={meta} />,
-      ZSelect: <ZSelect meta={meta} />,
-      ZRadio: <ZRadio meta={meta} />
+      TitleInput: <TitleInput meta={meta}/>,
+      Rate: <Rate meta={meta}/>,
+      Header: <Header meta={meta}/>,
+      ZDate: <ZDate meta={meta}/>,
+      ZSelect: <ZSelect meta={meta}/>,
+      ZRadio: <ZRadio meta={meta}/>
     };
     return d[component];
   }
@@ -62,36 +56,39 @@ class Container extends Component {
           findCard={findCard}
           handleDrop={handleDrop}
           handleEdit={handleEdit}
-          handleDelete={handleDelete}
-        >
+          handleDelete={handleDelete}>
           {this.renderDynamicComponent(card.component, card.meta)}
         </Card>
       ));
     } else {
       rr = (
-        <p style={{ width: "100%", height: "200px", textAlign: "center" }}>
+        <p
+          style={{
+          width: "100%",
+          height: "200px",
+          textAlign: "center",
+          fontSize:'32px'
+        }}>
           ➡拖入左侧块
         </p>
       );
     }
 
     return connectDropTarget(
-      <div style={style}>
+      <div style={{minHeight:'100vh',paddingRight:'50px'}}>
         {rr}
-        <hr />
-        <h5>JSON:</h5>
+        <Divider />
+        <h5>工程JSON:</h5>
         <code>{JSON.stringify(cards)}</code>
       </div>
     );
   }
 }
 
-export default DropTarget(
-  [ItemTypes.BOX, ItemTypes.CARD],
-  stageTarget,
-  (connect, monitor) => ({
-    connectDropTarget: connect.dropTarget(),
-    isOver: monitor.isOver(),
-    canDrop: monitor.canDrop()
-  })
-)(Container);
+export default DropTarget([
+  ItemTypes.BOX, ItemTypes.CARD
+], stageTarget, (connect, monitor) => ({
+  connectDropTarget: connect.dropTarget(),
+  isOver: monitor.isOver(),
+  canDrop: monitor.canDrop()
+}))(Container);
