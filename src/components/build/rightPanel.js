@@ -14,7 +14,7 @@ class c extends Component {
         if (typeof card.meta[key] === "object") {
           return (
             <label key={index}>
-              key:{key}
+              属性:{key}
               <TextArea
                 autosize={{
                 minRows: 3
@@ -26,7 +26,7 @@ class c extends Component {
         } else {
           return (
             <label key={index}>
-              key:{key}
+              属性:{key}
               <Input
                 value={card.meta[key] || ""}
                 onChange={e => handleChangeCard(e, card.id, key)}/>

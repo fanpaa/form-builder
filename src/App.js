@@ -8,6 +8,7 @@ import {
 
 import MyForms from "./pages/myforms";
 import Build from "./pages/build";
+import Preview from "./pages/preview";
 // import Lab from "./pages/lab";
 import "./App.css";
 
@@ -18,6 +19,7 @@ class App extends Component {
         <Switch>
           <Route path="/myforms" exact component={MyForms} />
           <Route path="/build" component={Build} />
+          <Route path="/preview" component={Preview} />
           {/* <Route path="/lab" component={Lab} /> */}
           <Redirect from="/" to="/myforms" />
         </Switch>

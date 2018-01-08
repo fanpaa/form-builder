@@ -51,7 +51,7 @@ class Build extends Component {
     return (
       <Layout>
         <PrimaryHeader/>
-        <SecondaryHeader/>
+        <SecondaryHeader cards={cards}/>
         <Layout>
           <LeftPanel/>
           <Layout style={{
