@@ -10,7 +10,7 @@ import Header from "./Header";
 import ZRadio from "./ZRadio";
 import ZDate from "./ZDate";
 import ZSelect from "./ZSelect";
-import { Divider } from "antd";
+import { Divider,Input,DatePicker,TimePicker } from "antd";
 
 const stageTarget = {
   drop(props, monitor) {
@@ -25,6 +25,9 @@ class Container extends Component {
 
   renderDynamicComponent(component, meta) {
     const d = {
+      Input:<Input meta={meta} />,
+      DatePicker:<DatePicker meta={meta} />,
+      TimePicker:<TimePicker meta={meta} />,
       TitleInput: <TitleInput meta={meta} />,
       Rate: <Rate meta={meta} />,
       Header: <Header meta={meta} />,

@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Input, Button, DatePicker } from "antd";
+import { Form, Input, DatePicker, TimePicker, Button } from "antd";
 import TitleInput from "../components/build/TitleInput";
 import Rate from "../components/build/Rate";
 import Header from "../components/build/Header";
@@ -20,8 +20,9 @@ const FormItem = Form.Item;
 
 function renderDynamicComponent(meta) {
   return {
-    Input,
-    DatePicker,
+    Input: <Input meta={meta} />,
+    DatePicker: <DatePicker meta={meta} />,
+    TimePicker: <TimePicker meta={meta} />,
     TitleInput: <TitleInput meta={meta} />,
     Rate: <Rate meta={meta} />,
     Header: <Header meta={meta} />,
@@ -30,18 +31,6 @@ function renderDynamicComponent(meta) {
     ZRadio: <ZRadio meta={meta} />
   };
 }
-// let formData = [
-//   {
-//     key:'first',
-//     label: "label1",
-//     component: "Input"
-//   },
-//   {
-//     key:'ss',
-//     label: "lable2",
-//     component: "DatePicker"
-//   }
-// ];
 
 class RegistrationForm extends React.Component {
   state = {
@@ -70,13 +59,10 @@ class RegistrationForm extends React.Component {
   }
 
   render() {
-    console.log(this.props.location.search);
-
     const { getFieldDecorator } = this.props.form;
     const params = new URLSearchParams(this.props.location.search);
     const formData = JSON.parse(params.get("data"));
 
-    console.log(formData);
     const formItemLayout = {
       labelCol: {
         xs: { span: 24 },
@@ -102,14 +88,11 @@ class RegistrationForm extends React.Component {
 
     const formItems = formData.map(k => {
       const tag = renderDynamicComponent(k.meta)[k.component];
+      const _key = k.meta.key || `preview_${k.id}`;
       return (
         <FormItem {...formItemLayout} label={k.meta.label} key={k.id}>
-          {getFieldDecorator(`t${k.id}`, {
-            rules: [
-              {
-                required: true
-              }
-            ]
+          {getFieldDecorator(_key, {
+            rules: []
           })(tag)}
         </FormItem>
       );

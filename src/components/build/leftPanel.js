@@ -101,6 +101,36 @@ class LeftPanel extends Component {
               component="ZSelect"
             />
           </Menu.Item>
+          <Menu.Item key="6">
+            <Box
+              meta={{
+                label:'antInput',
+                key:'test2'
+              }}
+              name="input"
+              component="Input"
+            />
+          </Menu.Item>
+          <Menu.Item key="7">
+            <Box
+              meta={{
+                label:'antDatePicker',
+                key:'test3'
+              }}
+              name="DatePicker"
+              component="DatePicker"
+            />
+          </Menu.Item>
+          <Menu.Item key="8">
+            <Box
+              meta={{
+                label:'antTimePicker',
+                key:'test1'
+              }}
+              name="TimePicker"
+              component="TimePicker"
+            />
+          </Menu.Item>
         </Menu>
       </Sider>
     );
