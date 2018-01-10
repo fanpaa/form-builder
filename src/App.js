@@ -1,16 +1,15 @@
 import React, { Component } from "react";
-import {
-  Route,
-  Redirect,
-  Switch,
-  HashRouter
-} from "react-router-dom";
+import { Route, Redirect, Switch, HashRouter } from "react-router-dom";
 
 import MyForms from "./pages/myforms";
 import Build from "./pages/build";
 import Preview from "./pages/preview";
 // import Lab from "./pages/lab";
 import "./App.css";
+
+// import moment from "moment";
+// import "moment/locale/zh-cn";
+// moment.locale("zh-cn");
 
 class App extends Component {
   render() {

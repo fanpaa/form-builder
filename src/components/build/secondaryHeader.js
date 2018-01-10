@@ -6,9 +6,8 @@ class CC extends Component {
   handleClick(item, key, keyPath) {
     console.log(item, key, keyPath);
     if (item.key === "3") {
-      window.location.href = `/#/preview?data=${JSON.stringify(
-        this.props.cards
-      )}`;
+      window.open(`/#/preview?data=${JSON.stringify(this.props.cards)}`,
+      "_blank");
     }
   }
   render() {
@@ -25,7 +24,7 @@ class CC extends Component {
           onClick={this.handleClick.bind(this)}
         >
           <Menu.Item key="1">建立</Menu.Item>
-          <Menu.Item key="2">设置</Menu.Item>
+          {/* <Menu.Item key="2">设置</Menu.Item> */}
           <Menu.Item key="3">预览</Menu.Item>
         </Menu>
       </Header>

@@ -3,15 +3,16 @@ import PropTypes from "prop-types";
 import { DropTarget } from "react-dnd";
 import Card from "./Card";
 import ItemTypes from "./ItemTypes";
+import ReactJson from "react-json-view";
 
-import TitleInput from "./TitleInput";
-import Rate from "./Rate";
+// import TitleInput from "./TitleInput";
 import Header from "./Header";
-import ZRadio from "./ZRadio";
-import ZDate from "./ZDate";
-import ZSelect from "./ZSelect";
-import { Divider,Input,DatePicker,TimePicker } from "antd";
-
+// import ZRadio from "./ZRadio";
+// import ZDate from "./ZDate";
+// import ZSelect from "./ZSelect";
+import { Input, DatePicker, TimePicker, Select, Divider, Radio } from "antd";
+const RadioGroup = Radio.Group;
+const Option = Select.Option;
 const stageTarget = {
   drop(props, monitor) {
     props.handleDrop(monitor.getItem());
@@ -23,19 +24,58 @@ class Container extends Component {
     connectDropTarget: PropTypes.func.isRequired
   };
 
-  renderDynamicComponent(component, meta) {
-    const d = {
-      Input:<Input meta={meta} />,
-      DatePicker:<DatePicker meta={meta} />,
-      TimePicker:<TimePicker meta={meta} />,
-      TitleInput: <TitleInput meta={meta} />,
-      Rate: <Rate meta={meta} />,
-      Header: <Header meta={meta} />,
-      ZDate: <ZDate meta={meta} />,
-      ZSelect: <ZSelect meta={meta} />,
-      ZRadio: <ZRadio meta={meta} />
-    };
-    return d[component];
+  renderDynamicComponent(meta, component) {
+    let tag;
+    switch (component) {
+      case "Input":
+        tag = <Input meta={meta} />;
+        break;
+      case "DatePicker":
+        tag = <DatePicker meta={meta} />;
+        break;
+      case "TimePicker":
+        tag = <TimePicker meta={meta} />;
+        break;
+      case "Header":
+        tag = <Header meta={meta} />;
+        break;
+      case "Divider":
+        tag = <Divider />;
+        break;
+      case "Radio":
+        tag = (
+          <RadioGroup>
+            {meta.options.map((r, i) => {
+              return (
+                <Radio key={i} value={r.value}>
+                  {r.label}
+                </Radio>
+              );
+            })}
+          </RadioGroup>
+        );
+        break;
+      case "Select":
+        tag = (
+          <Select
+            placeholder="Please select a country"
+            style={{ width: "200px" }}
+          >
+            {meta.options.map((r, i) => {
+              return (
+                <Option key={i} value={r.value}>
+                  {r.label}
+                </Option>
+              );
+            })}
+          </Select>
+        );
+        break;
+      default:
+        tag = <div />;
+        break;
+    }
+    return tag;
   }
 
   render() {
@@ -61,8 +101,12 @@ class Container extends Component {
           handleEdit={handleEdit}
           handleDelete={handleDelete}
         >
-          <label style={{display:'inline-block',width:'100px'}}>{card.meta.label}: </label>{" "}
-          {this.renderDynamicComponent(card.component, card.meta)}
+          {card.meta.label ? (
+            <label style={{ display: "inline-block", width: "100px" }}>
+              {card.meta.label}:{" "}
+            </label>
+          ) : null}
+          {this.renderDynamicComponent(card.meta, card.component)}
         </Card>
       ));
     } else {
@@ -85,7 +129,9 @@ class Container extends Component {
         {rr}
         <Divider />
         <h5>工程JSON:</h5>
-        <code>{JSON.stringify(cards)}</code>
+        {/* <code>{JSON.stringify(cards)}</code> */}
+        <ReactJson src={cards} />
+
       </div>
     );
   }

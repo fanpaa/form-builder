@@ -5,7 +5,6 @@ const {TextArea} = Input;
 class c extends Component {
   render() {
     const {card, handleChangeCard} = this.props;
-    console.log("right render", card);
     let pp;
 
     pp = Object
@@ -36,7 +35,7 @@ class c extends Component {
       });
 
     return (
-      <Sider width={200} style={{
+      <Sider width={250} style={{
         background: '#fff',
         padding:'15px'
       }}>
