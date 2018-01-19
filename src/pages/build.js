@@ -25,7 +25,107 @@ class Build extends Component {
     this.moveCard = this.moveCard.bind(this);
     this.findCard = this.findCard.bind(this);
     this.state = {
-      cards: [],
+      cards: [
+        {
+          id: 0,
+          component: "Input",
+          meta: {
+            label: "出险人信息",
+            key: "claimUserName"
+          }
+        },
+        {
+          id: 1,
+          component: "Radio",
+          meta: {
+            label: "您为谁理赔（关系）",
+            key: "insurantType",
+            options: [
+              {
+                label: "本人",
+                value: "1"
+              },
+              {
+                label: "配偶",
+                value: "2"
+              },
+              {
+                label: "子女",
+                value: "3"
+              },
+              {
+                label: "父母",
+                value: "4"
+              }
+            ]
+          }
+        },
+        {
+          id: 2,
+          component: "DatePicker",
+          meta: {
+            label: "出险日期",
+            key: "accidentStartDate"
+          }
+        },
+        {
+          id: 3,
+          component: "InputNumber",
+          meta: {
+            label: "索赔金额",
+            key: "reportAmount"
+          }
+        },
+        {
+          id: 4,
+          component: "Checkbox",
+          meta: {
+            label: "事故类别（多选）",
+            key: "accidentTypeList",
+            options: [
+              {
+                label: "意外医疗",
+                value: "1"
+              },
+              {
+                label: "疾病医疗",
+                value: "2"
+              },
+              {
+                label: "疾病住院",
+                value: "3"
+              }
+            ]
+          }
+        },
+        {
+          id: 5,
+          component: "Radio",
+          meta: {
+            label: "是否已在社保或者第三方保险公司申请理赔",
+            key: "isNeedClaimDivision",
+            options: [
+              {
+                label: "是",
+                value: "1"
+              },
+              {
+                label: "否",
+                value: "2"
+              }
+            ]
+          }
+        },
+        {
+          id: 6,
+          component: "TextArea",
+          meta: {
+            label: "备注",
+            key: "accidentDesc",
+            rows: 4
+          }
+        }
+      ],
       rightPanel: {
         meta: {}
       }

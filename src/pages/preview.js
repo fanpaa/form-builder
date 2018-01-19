@@ -8,7 +8,8 @@ import {
   Button,
   Radio,
   Select,
-  Checkbox
+  Checkbox,
+  InputNumber
 } from "antd";
 import Header from "../components/build/Header";
 import ReactJson from "react-json-view";
@@ -17,6 +18,8 @@ const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
 const Option = Select.Option;
 const CheckboxGroup = Checkbox.Group;
+
+const { TextArea } = Input;
 
 // const ComponentMap = {
 //   Input,
@@ -34,6 +37,12 @@ function renderDynamicComponent(meta, component) {
   switch (component) {
     case "Input":
       tag = <Input meta={meta} />;
+      break;
+    case "TextArea":
+      tag = <TextArea meta={meta} />;
+      break;
+    case "InputNumber":
+      tag = <InputNumber meta={meta} />;
       break;
     case "DatePicker":
       tag = <DatePicker meta={meta} />;
@@ -142,7 +151,7 @@ class RegistrationForm extends React.Component {
     });
 
     return (
-      <div style={{ width: "770px", margin: "0 auto" }}>
+      <div style={{ width: "960px", margin: "0 auto" }}>
         <Form onSubmit={this.handleSubmit} style={{ width: "570px" }}>
           {formItems}
           <FormItem {...tailFormItemLayout}>

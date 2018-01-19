@@ -17,11 +17,14 @@ import {
   Select,
   Divider,
   Radio,
-  Checkbox
+  Checkbox,
+  InputNumber
 } from "antd";
 const RadioGroup = Radio.Group;
 const Option = Select.Option;
 const CheckboxGroup = Checkbox.Group;
+
+const { TextArea } = Input;
 const stageTarget = {
   drop(props, monitor) {
     props.handleDrop(monitor.getItem());
@@ -39,6 +42,12 @@ class Container extends Component {
       case "Input":
         tag = <Input meta={meta} />;
         break;
+      case "TextArea":
+        tag = <TextArea meta={meta} />;
+        break;
+      case "InputNumber":
+        tag = <InputNumber meta={meta} />;
+        break;
       case "DatePicker":
         tag = <DatePicker meta={meta} />;
         break;
@@ -52,11 +61,7 @@ class Container extends Component {
         tag = <Divider />;
         break;
       case "Checkbox":
-        tag = (
-          <CheckboxGroup
-            options={meta.options}
-          />
-        );
+        tag = <CheckboxGroup options={meta.options} />;
         break;
       case "Radio":
         tag = (

@@ -63,6 +63,27 @@ class LeftPanel extends Component {
                 component="Input"
               />
             </Menu.Item>
+            <Menu.Item key="56">
+              <Box
+                meta={{
+                  label: "antInputNumber",
+                  key: "test2"
+                }}
+                name="数字输入框"
+                component="InputNumber"
+              />
+            </Menu.Item>
+            <Menu.Item key="58">
+              <Box
+                meta={{
+                  label: "TextArea",
+                  key: "test212",
+                  rows: 4 //todo  字符串转数字
+                }}
+                name="文本域"
+                component="TextArea"
+              />
+            </Menu.Item>
             <Menu.Item key="7">
               <Box
                 meta={{
