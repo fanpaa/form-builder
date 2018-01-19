@@ -13,3 +13,8 @@
 .z-icon-hover:hover{
   color:#1890ff
 }
+
+.ant-checkbox-group{
+  display: inline-block;
+  line-height: unset;
+}

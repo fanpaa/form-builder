@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Box from "./Box";
-import { Layout, Menu,Icon } from "antd";
+import { Layout, Menu, Icon } from "antd";
 
 const { Sider } = Layout;
 const SubMenu = Menu.SubMenu;
@@ -105,6 +105,21 @@ class LeftPanel extends Component {
                 }}
                 name="单选框"
                 component="Radio"
+              />
+            </Menu.Item>
+            <Menu.Item key="39">
+              <Box
+                meta={{
+                  label: "Checkbox",
+                  key: "testCheckbox",
+                  options: [
+                    { label: "Apple", value: "Apple" },
+                    { label: "Pear", value: "Pear" },
+                    { label: "Orange", value: "Orange" }
+                  ]
+                }}
+                name="多选框"
+                component="Checkbox"
               />
             </Menu.Item>
             <Menu.Item key="19">

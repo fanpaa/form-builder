@@ -7,7 +7,8 @@ import {
   TimePicker,
   Button,
   Radio,
-  Select
+  Select,
+  Checkbox
 } from "antd";
 import Header from "../components/build/Header";
 import ReactJson from "react-json-view";
@@ -15,6 +16,7 @@ import URLSearchParams from "url-search-params";
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
 const Option = Select.Option;
+const CheckboxGroup = Checkbox.Group;
 
 // const ComponentMap = {
 //   Input,
@@ -44,6 +46,9 @@ function renderDynamicComponent(meta, component) {
       break;
     case "Divider":
       tag = <Divider />;
+      break;
+    case "Checkbox":
+      tag = <CheckboxGroup options={meta.options} />;
       break;
     case "Radio":
       tag = (

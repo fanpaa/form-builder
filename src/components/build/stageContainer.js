@@ -10,9 +10,18 @@ import Header from "./Header";
 // import ZRadio from "./ZRadio";
 // import ZDate from "./ZDate";
 // import ZSelect from "./ZSelect";
-import { Input, DatePicker, TimePicker, Select, Divider, Radio } from "antd";
+import {
+  Input,
+  DatePicker,
+  TimePicker,
+  Select,
+  Divider,
+  Radio,
+  Checkbox
+} from "antd";
 const RadioGroup = Radio.Group;
 const Option = Select.Option;
+const CheckboxGroup = Checkbox.Group;
 const stageTarget = {
   drop(props, monitor) {
     props.handleDrop(monitor.getItem());
@@ -41,6 +50,13 @@ class Container extends Component {
         break;
       case "Divider":
         tag = <Divider />;
+        break;
+      case "Checkbox":
+        tag = (
+          <CheckboxGroup
+            options={meta.options}
+          />
+        );
         break;
       case "Radio":
         tag = (
@@ -131,7 +147,6 @@ class Container extends Component {
         <h5>工程JSON:</h5>
         {/* <code>{JSON.stringify(cards)}</code> */}
         <ReactJson src={cards} />
-
       </div>
     );
   }
