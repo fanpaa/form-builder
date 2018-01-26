@@ -70,7 +70,7 @@ class Build extends Component {
         },
         {
           id: 3,
-          component: "InputNumber",
+          component: "Input",
           meta: {
             label: "索赔金额",
             key: "reportAmount"

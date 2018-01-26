@@ -150,7 +150,7 @@ class Container extends Component {
         {rr}
         <Divider />
         <h5>工程JSON:</h5>
-        {/* <code>{JSON.stringify(cards)}</code> */}
+        <code>{JSON.stringify(cards)}</code>
         <ReactJson src={cards} />
       </div>
     );
