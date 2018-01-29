@@ -144,7 +144,7 @@ class RegistrationForm extends React.Component {
       return (
         <FormItem {...formItemLayout} label={k.meta.label} key={k.id}>
           {getFieldDecorator(_key, {
-            rules: []
+            rules: k.meta.rules || []
           })(tag)}
         </FormItem>
       );

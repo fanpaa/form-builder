@@ -31,7 +31,13 @@ class Build extends Component {
           component: "Input",
           meta: {
             label: "出险人信息",
-            key: "claimUserName"
+            key: "claimUserName",
+            rules: [
+              {
+                message: "姓名过长",
+                max: 32
+              }
+            ]
           }
         },
         {
@@ -73,7 +79,13 @@ class Build extends Component {
           component: "Input",
           meta: {
             label: "索赔金额",
-            key: "reportAmount"
+            key: "reportAmount",
+            rules: [
+              {
+                message: "金额过长",
+                max: 12
+              }
+            ]
           }
         },
         {
@@ -122,7 +134,13 @@ class Build extends Component {
           meta: {
             label: "备注",
             key: "accidentDesc",
-            rows: 4
+            rows: 4,
+            rules: [
+              {
+                message: "备注过长",
+                max: 254
+              }
+            ]
           }
         }
       ],

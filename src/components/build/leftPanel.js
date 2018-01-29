@@ -57,7 +57,8 @@ class LeftPanel extends Component {
               <Box
                 meta={{
                   label: "antInput",
-                  key: "test2"
+                  key: "test2",
+                  rules: []
                 }}
                 name="输入框"
                 component="Input"
@@ -67,7 +68,8 @@ class LeftPanel extends Component {
               <Box
                 meta={{
                   label: "antInputNumber",
-                  key: "test2"
+                  key: "test2",
+                  rules: []
                 }}
                 name="数字输入框"
                 component="InputNumber"
@@ -78,7 +80,8 @@ class LeftPanel extends Component {
                 meta={{
                   label: "TextArea",
                   key: "test212",
-                  rows: 4 //todo  字符串转数字
+                  rows: 4, //todo  字符串转数字
+                  rules: []
                 }}
                 name="文本域"
                 component="TextArea"
@@ -88,7 +91,8 @@ class LeftPanel extends Component {
               <Box
                 meta={{
                   label: "antDatePicker",
-                  key: "test3"
+                  key: "test3",
+                  rules: []
                 }}
                 name="日期选择器"
                 component="DatePicker"
@@ -98,7 +102,8 @@ class LeftPanel extends Component {
               <Box
                 meta={{
                   label: "antTimePicker",
-                  key: "test1"
+                  key: "test1",
+                  rules: []
                 }}
                 name="时间选择器"
                 component="TimePicker"
@@ -122,7 +127,8 @@ class LeftPanel extends Component {
                       label: "tom",
                       value: "tom"
                     }
-                  ]
+                  ],
+                  rules: []
                 }}
                 name="单选框"
                 component="Radio"
@@ -137,7 +143,8 @@ class LeftPanel extends Component {
                     { label: "Apple", value: "Apple" },
                     { label: "Pear", value: "Pear" },
                     { label: "Orange", value: "Orange" }
-                  ]
+                  ],
+                  rules: []
                 }}
                 name="多选框"
                 component="Checkbox"
@@ -161,7 +168,8 @@ class LeftPanel extends Component {
                       label: "UK",
                       value: "uk"
                     }
-                  ]
+                  ],
+                  rules: []
                 }}
                 name="下拉框"
                 component="Select"
