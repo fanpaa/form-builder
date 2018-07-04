@@ -20,7 +20,7 @@ class App extends Component {
           <Route path="/build" component={Build} />
           <Route path="/preview" component={Preview} />
           {/* <Route path="/lab" component={Lab} /> */}
-          <Redirect from="/" to="/myforms" />
+          <Redirect from="/" to="/build" />
         </Switch>
       </HashRouter>
     );
